@@ -1,5 +1,5 @@
 # Purpose
-###We're going to track some of the more esoteric parts of being a dork here. I'm going on 25 sessions as a Druid with some of my coworkers, and I've also been homebrewing acampaign based on the Cyberpunk ruleset, so here's to organization instead of throwing all of these things into bits and bobs all over
+### We're going to track some of the more esoteric parts of being a dork here. I'm going on 25 sessions as a Druid with some of my coworkers, and I've also been homebrewing acampaign based on the Cyberpunk ruleset, so here's to organization instead of throwing all of these things into bits and bobs all over
 So, let's break that down into a few components
 
 ## TableTop Gaming in General
