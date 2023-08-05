@@ -29,7 +29,7 @@ def draw_grid():
 
 def game_loop():
     clock = pygame.time.Clock()
-    player = GameObject(0, 0, 'media/cyber_main_char.png')
+    player = GameObject(0, 0, 'media/character_assets/cyber_main_char.png')
     running = True
 
     while running:
