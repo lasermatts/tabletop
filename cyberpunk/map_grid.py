@@ -37,14 +37,15 @@ def game_loop():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    player.y -= 1
-                elif event.key == pygame.K_DOWN:
-                    player.y += 1
-                elif event.key == pygame.K_LEFT:
-                    player.x -= 1
-                elif event.key == pygame.K_RIGHT:
-                    player.x += 1
+                if event.key == pygame.K_UP and player.y > 0:
+                       player.y -= 1
+                elif event.key == pygame.K_DOWN and player.y < GRID_SIZE - 1:
+                        player.y += 1
+                elif event.key == pygame.K_LEFT and player.x > 0:
+                       player.x -= 1
+                elif event.key == pygame.K_RIGHT and player.x < GRID_SIZE - 1:
+                        player.x += 1
+
 
         window.fill((0, 0, 0))
         draw_grid()
