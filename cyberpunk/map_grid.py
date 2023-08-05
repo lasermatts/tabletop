@@ -27,6 +27,14 @@ def draw_grid():
             rect = pygame.Rect(x, y, CELL_SIZE, CELL_SIZE)
             pygame.draw.rect(window, (255, 255, 255), rect, 1)
 
+# Add menu selection for background
+backgrounds = ['media/background_assets/cyber_street.png', 'media/background_assets/cyber_skyscraper.png', 'media/background_assets/cyber_desert.png']
+for i, name in enumerate(backgrounds):
+    print(f"{i+1}. {name.split('/')[-1]}")  # Print the name without the path
+choice = int(input("Enter the number of the background you want to use: "))
+original_background = pygame.image.load(backgrounds[choice - 1])
+background = pygame.transform.scale(original_background, window_size)
+
 def game_loop():
     clock = pygame.time.Clock()
     player = GameObject(0, 0, 'media/character_assets/cyber_main_char.png')
@@ -46,8 +54,7 @@ def game_loop():
                 elif event.key == pygame.K_RIGHT and player.x < GRID_SIZE - 1:
                         player.x += 1
 
-
-        window.fill((0, 0, 0))
+        window.blit(background, (0, 0))
         draw_grid()
         player.draw(window)
         pygame.display.update()
