@@ -6,6 +6,23 @@ import numpy as np
 import math
 import random
 
+def generate_sudoku(size, difficulty):
+    # Create a list to store the Sudoku grid
+    grid = [[0 for _ in range(size)] for _ in range(size)]
+    # Generate a solved Sudoku
+    nums = list(range(1, size + 1))
+    for i in range(size):
+        for j in range(size):
+            np.random.shuffle(nums)
+            grid[i][j] = nums[j]
+    if solve_sudoku(grid, size):
+        grid = remove_numbers(grid, size, difficulty)
+        print_grid(grid, size)
+        return grid  # <-- This is the added line
+
+    else:
+        print("No solution exists")
+
 def is_valid(grid, row, col, num, size):
     box_size = int(math.sqrt(size))
     # Check if the number is already in the row or column
@@ -56,34 +73,44 @@ def remove_numbers(grid, size, num_to_remove):
             num_to_remove -= 1
     return grid
 
-def generate_sudoku(size, difficulty):
-    # Create a list to store the Sudoku grid
-    grid = [[0 for _ in range(size)] for _ in range(size)]
-    # Generate a solved Sudoku
-    nums = list(range(1, size + 1))
-    for i in range(size):
-        for j in range(size):
-            np.random.shuffle(nums)
-            grid[i][j] = nums[j]
-    if solve_sudoku(grid, size):
-        grid = remove_numbers(grid, size, difficulty)
+def get_user_solution(grid, size):
+    while True:
+        # Print the current state of the grid
         print_grid(grid, size)
-    else:
-        print("No solution exists")
+        user_input = input("Enter your solution in the format 'row col num', or 'q' to quit: ")
+        if user_input.lower() == 'q':
+            break
+        row, col, num = map(int, user_input.split())
+        if is_valid(grid, row, col, num, size):
+            grid[row][col] = num
+            if is_grid_solved(grid, size):
+                print("Congratulations! You've solved the puzzle.")
+                break
+        else:
+            print("Invalid move. Please try again.")
+
+def is_grid_solved(grid, size):
+    # Assuming an "x" in the grid means it is not filled
+    return all(all(cell != 0 for cell in row) for row in grid) and \
+           all(is_valid(grid, row, col, grid[row][col], size) for row in range(size) for col in range(size))
+
 
 def main():
     while True:
-        difficulty = input("Please enter the difficulty (easy, medium, hard) or 'quit' to exit: ")
+        difficulty = input("Please enter the difficulty (easy, medium, hard) or 'q' to exit: ")
         if difficulty == "easy":
-            generate_sudoku(4, 4)  # Removing 4 numbers for easy 4x4 Sudoku
+            grid = generate_sudoku(4, 4)  # Removing 4 numbers for easy 4x4 Sudoku
+            get_user_solution(grid, 4)
         elif difficulty == "medium":
-            generate_sudoku(6, 12)  # Removing 12 numbers for medium 6x6 Sudoku
+            grid = generate_sudoku(6, 12)  # Removing 12 numbers for medium 6x6 Sudoku
+            get_user_solution(grid, 4)
         elif difficulty == "hard":
-            generate_sudoku(9, 20)  # Removing 20 numbers for hard 9x9 Sudoku
-        elif difficulty.lower() == "quit":
+            grid = generate_sudoku(9, 20)  # Removing 20 numbers for hard 9x9 Sudoku
+            get_user_solution(grid, 4)
+        elif difficulty.lower() == "q":
             break
         else:
-            print("Invalid input. Please enter either 'easy', 'medium', 'hard', or 'quit'.")
+            print("Invalid input. Please enter either 'easy', 'medium', 'hard', or 'q' to quit.")
 
 if __name__ == "__main__":
     main()
