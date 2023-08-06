@@ -10,6 +10,8 @@ Right now `map_grid.py` is the only thing that uses a non-standard Python librar
 
 ## SUDOKU GENERATOR
 
+This has been scaled out for the public! Grab (your own version here!)[https://github.com/lasermatts/PyDoku]
+
 What netrunner doesn't love math, command lines, and puzzles?
 
 The `python sudoku.py` script runs in your command line (because hackers do their morning puzzle in the terminal) and outputs a 4x4, 6x6, or 9x9 puzzle. 
