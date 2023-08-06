@@ -10,7 +10,7 @@ Right now `map_grid.py` is the only thing that uses a non-standard Python librar
 
 ## SUDOKU GENERATOR
 
-This has been scaled out for the public! Grab (your own version here!)[https://github.com/lasermatts/PyDoku]
+This has been scaled out for the public! Grab [your own version here!](https://github.com/lasermatts/PyDoku)
 
 What netrunner doesn't love math, command lines, and puzzles?
 
